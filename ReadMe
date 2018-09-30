@@ -1,0 +1,8 @@
+Assumptions made: Movies will run for atleast 7days in a hall.
+
+Improvements can be made:
+  1.Using joins instead of using multiple queries
+  2.Adding appropriate indices to columns in DB
+  3.Ensuring that duplicate entries are not added to dB.
+  4.Writing Tests
+  5.Ensuring that correct status codes are returned.
