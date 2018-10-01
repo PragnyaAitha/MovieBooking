@@ -2,8 +2,10 @@
 
 namespace app\controllers;
 
+use Yii;
 use yii\rest\ActiveController;
 use app\models\Movie;
+use yii\web\HttpException;
 
 class MovieController extends ActiveController
 {
@@ -25,5 +27,4 @@ class MovieController extends ActiveController
     		throw new HttpException(404, Yii::t('app','Record not found.'));
     	}
     }
-
 }

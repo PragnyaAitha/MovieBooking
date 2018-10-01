@@ -104,13 +104,17 @@ class CinemaHall extends \yii\db\ActiveRecord
         return $this->hasMany(Ticket::className(), ['cinema_hall_id' => 'id']);
     }
 
+    // get the seat layout for a cinema hall for a movie at the showtime
     public function getUnbookedSeats($city_id, $movie_id, $cinema_hall_id, $show_time_id){
+        //get all the bookings for that movie in the cinema hall at the mentioned show time
         $bookingIds = Booking::find()->select('id')->where(['city_id' => $city_id, 'movie_id' => $movie_id, 'cinema_hall_id' => $cinema_hall_id, 'show_time_id' => $show_time_id])->all();
         $bookingIds = ArrayHelper::getColumn($bookingIds, 'id');
 
+        //get all the booked seat ids 
         $bookedSeatIds = SeatBooked::find()->select('seat_id')->where(['IN', 'booking_id', $bookingIds])->all();
         $bookedSeatIds = ArrayHelper::getColumn($bookedSeatIds, 'seat_id');
 
+        //get all the unbooked seat numbers
         $unbookedSeats = Seat::find()->select('seat_no')->where(['cinema_hall_id' => $cinema_hall_id])
         ->andWhere(['NOT IN', 'id', $bookedSeatIds])->all();
 

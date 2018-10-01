@@ -129,9 +129,9 @@ class Booking extends \yii\db\ActiveRecord
         $booking->show_time_id = $requestData['showTimeId'];
         $booking->booking_value = $requestData['bookingValue'];
         $booking->city_id = $requestData['cityId'];
-        $bookingEntry = $booking->save();
+        $bookingEntry = $booking->save(); // save booking info
 
-        $seatBooked = new SeatBooked();
+        $seatBooked = new SeatBooked(); // save booked seats info
         $seatBooked->addSeatBookedInfo($booking['id'], $requestData['cinemaHallId'], $requestData['seatNumbers']);
     }
 }

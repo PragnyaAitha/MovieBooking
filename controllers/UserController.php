@@ -18,6 +18,7 @@ class UserController extends ActiveController
 
     public function actionFetchBookedSeats($bookingDate, $movieId, $userId, $cinemaHallId, $showTimeId, $cityId)
     {
+        // gets the booked seat numbers of thhe user for a movie
     	$booking = new Booking();
     	$bookingIds = $booking->getBookingInfo($bookingDate, $movieId, $userId, $cinemaHallId, $showTimeId, $cityId);
     	$bookingIds = ArrayHelper::getColumn($bookingIds, 'id');

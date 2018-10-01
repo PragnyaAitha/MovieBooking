@@ -61,6 +61,7 @@ class Movie extends \yii\db\ActiveRecord
     }
 
     public function activeMovies($city_id){
+        //query to fetch avtive movies for a city, movies are active if is_active field is 1 
         return $this->find()->where(['is_active' => Movie::ACTIVE_MOVIE, 'city_id' => $city_id])->all();
     }
 

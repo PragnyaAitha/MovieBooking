@@ -90,6 +90,7 @@ class Ticket extends \yii\db\ActiveRecord
         return $this->hasOne(Movie::className(), ['id' => 'movie_id']);
     }
 
+    // get the ticket data for a movie in a city between two mentioned dates.
     public function getTicketsBetweenTwoDates($movie_id, $city_id, $date1, $date2){
         return $this->find()->where(['movie_id' => $movie_id, 'city_id' => $city_id])
             ->andWhere(['>=', 'ticket_date', $date1])
@@ -97,6 +98,7 @@ class Ticket extends \yii\db\ActiveRecord
             ->all();
     }
 
+    // get the ticket data for a movie in a city.
     public function getTicketShowsAndCinemaHallData($movie_id, $city_id){
         $movie = new Movie();
         $movie = $movie->getMovie($movie_id);
